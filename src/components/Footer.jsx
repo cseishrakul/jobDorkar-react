@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="text-xl font-bold">JobDorkar</div>
 
         {/* Center */}
-        <div className="gap-6 text-sm md:text-base">
+        <div className="flex gap-6 text-sm md:text-base">
           <a href="/" className="hover:underline">Home</a>
           <a href="/login" className="hover:underline">Login</a>
           <a href="/signup" className="hover:underline">Signup</a>
