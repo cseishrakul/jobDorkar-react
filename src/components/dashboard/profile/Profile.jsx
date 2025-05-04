@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import User from './User'
 import Shortcuts from './Shortcuts'
 import DonutChart from './DonutChart'
