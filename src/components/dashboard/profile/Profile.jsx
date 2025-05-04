@@ -3,7 +3,7 @@ import User from './User'
 import Shortcuts from './Shortcuts'
 import DonutChart from './DonutChart'
 
-const Profile = ({darkMode,user}) => {
+const Profile = ({darkMode}) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
