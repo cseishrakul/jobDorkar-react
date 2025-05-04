@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+
+:root {
+  --primary: #141414;
+  --blue: #3575E2
+}
+
+
+*{
+  @apply transition-colors duration-200
+}
