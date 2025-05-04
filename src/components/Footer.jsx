@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="text-xl font-bold">JobDorkar</div>
 
         {/* Center */}
-        <div className="flex gap-6 text-sm md:text-base">
+        <div className="gap-6 text-sm md:text-base">
           <a href="/" className="hover:underline">Home</a>
           <a href="/login" className="hover:underline">Login</a>
           <a href="/signup" className="hover:underline">Signup</a>
@@ -22,7 +22,7 @@ const Footer = () => {
             <a href="https://ishrakul-islam.great-site.net/" target="_blank" rel="noopener noreferrer">
               <FaGlobe className="hover:text-gray-300" />
             </a>
-            <a href="https://www.linkedin.com/in/ishrakul-islam" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/md-ishrakul-islam-efaz/" target="_blank" rel="noopener noreferrer">
               <FaLinkedin className="hover:text-gray-300" />
             </a>
             <a href="https://twitter.com/yourtwitter" target="_blank" rel="noopener noreferrer">
