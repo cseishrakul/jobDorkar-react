@@ -97,7 +97,7 @@ const Navbar = () => {
                 to="/register"
                 className="py-2 px-5 border border-blue-700 rounded-md bg-blue-700 text-white"
               >
-                Sign In
+                Sign Up
               </Link>
             </>
           )}
