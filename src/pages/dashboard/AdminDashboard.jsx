@@ -39,7 +39,7 @@ const AdminDashboard = () => {
 
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
-  
+
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
       year: "numeric",
@@ -127,9 +127,9 @@ const AdminDashboard = () => {
 };
 
 const DashboardCard = ({ title, value }) => (
-  <div className="p-4 bg-white border rounded-lg shadow text-center">
-    <h3 className="text-lg font-semibold">{title}</h3>
-    <p className="text-2xl font-bold text-blue-600">{value}</p>
+  <div className="p-6 bg-gradient-to-br from-white to-blue-50 border border-blue-200 rounded-2xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+    <h3 className="text-xl font-semibold text-gray-700 mb-2">{title}</h3>
+    <p className="text-3xl font-bold text-blue-600">{value}</p>
   </div>
 );
 
@@ -137,21 +137,29 @@ const SectionTable = ({ title, headers, rows }) => (
   <section>
     <h2 className="text-2xl font-semibold mb-4">{title}</h2>
     <div className="overflow-x-auto">
-      <table className="min-w-full text-sm border border-gray-200">
-        <thead className="bg-gray-100 text-left">
+      <table className="min-w-full text-sm border border-gray-200 shadow-md rounded-lg overflow-hidden">
+        <thead className="bg-gradient-to-r from-blue-100 to-blue-200 text-gray-700 font-semibold">
           <tr>
             {headers.map((header, i) => (
-              <th key={i} className="py-2 px-4 border-b">
+              <th
+                key={i}
+                className="py-3 px-5 border-b border-gray-300 text-left"
+              >
                 {header}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="bg-white divide-y divide-gray-200">
           {rows.map((row, idx) => (
-            <tr key={idx} className="border-t hover:bg-gray-50">
+            <tr
+              key={idx}
+              className={`transition duration-200 ease-in-out hover:bg-blue-50 ${
+                idx % 2 === 0 ? "bg-gray-50" : "bg-white"
+              }`}
+            >
               {row.map((cell, i) => (
-                <td key={i} className="py-2 px-4">
+                <td key={i} className="py-3 px-5 text-gray-700">
                   {cell}
                 </td>
               ))}
