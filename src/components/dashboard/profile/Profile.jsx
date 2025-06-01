@@ -21,6 +21,8 @@ const Profile = ({darkMode}) => {
         if (response.ok) {
           const data = await response.json();
           setUser(data);
+          console.log(data);
+          
         } else {
           console.error("Failed to fetch user:", response.status);
         }
@@ -40,8 +42,8 @@ const Profile = ({darkMode}) => {
       }`}
     >
       <User darkMode={darkMode} user={user} />
-      <Shortcuts darkMode={darkMode} />
-      <DonutChart darkMode={darkMode} />
+      {/* <Shortcuts darkMode={darkMode} />
+      <DonutChart darkMode={darkMode} /> */}
     </div>
   )
 }

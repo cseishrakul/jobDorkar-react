@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaCircle, FaMoon, FaSun } from "react-icons/fa";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { MdSpaceDashboard } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Header = ({ toggleDarkMode, darkMode, toogleSidebar }) => {
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
   const handleLogout = () => {
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    localStorage.removeItem("userData");
-    setUserData(null);
-    navigate("/");
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to log out?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, log out",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("access");
+        localStorage.removeItem("refresh");
+        localStorage.removeItem("userData");
+        setUserData(null);
+        Swal.fire(
+          "Logged Out!",
+          "You have been successfully logged out.",
+          "success"
+        ).then(() => {
+          navigate("/");
+          window.location.reload();
+        });
+      }
+    });
   };
   return (
     <nav
@@ -31,7 +54,9 @@ const Header = ({ toggleDarkMode, darkMode, toogleSidebar }) => {
           </button>
           <a href="/dashboard" className="flex items-center ms-2 md:me-24">
             <MdSpaceDashboard className="h-8 me-3 text-xl text-violet-500" />
-            <span className="self-center text-xl font-semibold text-blue-800">JobDorkar</span>
+            <span className="self-center text-xl font-semibold text-blue-800">
+              JobDorkar
+            </span>
           </a>
         </div>
         <div className="flex items-center gap-4">

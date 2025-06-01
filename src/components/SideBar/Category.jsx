@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import InputField from '../InputField';
 
-const Location = ({ handleChange }) => {
+const Category = ({ handleChange }) => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,7 +27,7 @@ const Location = ({ handleChange }) => {
       <h4 className="text-lg font-medium mb-2">Category</h4>
       <div className="">
         <label className='sidebar-label-container'>
-          <input type="radio" name='location' id='all' value="" onChange={handleChange} />
+          <input type="radio" name='category' id='all' value="" onChange={handleChange} />
           <span className="checkmark"></span>All
         </label>
         {categories.map((category) => (
@@ -36,7 +36,7 @@ const Location = ({ handleChange }) => {
             handleChange={handleChange}
             value={category.name}
             title={category.name}
-            name="location"
+            name="category"
           />
         ))}
       </div>
@@ -44,4 +44,4 @@ const Location = ({ handleChange }) => {
   );
 };
 
-export default Location;
+export default Category;

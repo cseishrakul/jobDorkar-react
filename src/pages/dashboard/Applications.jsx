@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Applications = () => {
   const [applications, setApplications] = useState([]);
@@ -83,7 +84,7 @@ const Applications = () => {
   const handleUpdateStatus = async (applicationId) => {
     const newStatus = selectedStatus[applicationId];
     if (!newStatus) {
-      alert("Please select a status before updating.");
+      Swal.fire("Alert!", "Please select a status before updating.", "danger");
       return;
     }
     setLoadingStatus(applicationId);
@@ -110,11 +111,11 @@ const Applications = () => {
       setSelectedStatus((prev) => {
         const updated = { ...prev };
         delete updated[applicationId];
+        Swal.fire("Updated!", "Update status successfull !", "success");
         return updated;
       });
     } catch (error) {
-      console.error("Error updating status:", error);
-      alert("Failed to update status!");
+      Swal.fire("Alert!", "Failed to update status!", "danger");
     } finally {
       setLoadingStatus(null);
     }
@@ -139,7 +140,9 @@ const Applications = () => {
           <table className="min-w-full text-sm text-left">
             <thead
               className={`${
-                darkMode ? "bg-gray-700 text-gray-300" : "bg-gray-200 text-gray-700"
+                darkMode
+                  ? "bg-gray-700 text-gray-300"
+                  : "bg-gray-200 text-gray-700"
               } uppercase`}
             >
               <tr>
@@ -221,7 +224,9 @@ const Applications = () => {
           </table>
         </div>
       ) : (
-        <p className="text-center text-lg text-gray-500">No applications found</p>
+        <p className="text-center text-lg text-gray-500">
+          No applications found
+        </p>
       )}
     </div>
   );

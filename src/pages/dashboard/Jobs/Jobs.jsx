@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CreateUpdateJob from "./CreateUpdateJob";
 import JobList from "./JobList";
+import Swal from "sweetalert2";
 
 const Jobs = () => {
   const [categories, setCategories] = useState([]);
@@ -13,7 +14,9 @@ const Jobs = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("https://job-dorkar.vercel.app/api/jobs/categories/");
+        const response = await axios.get(
+          "https://job-dorkar.vercel.app/api/jobs/categories/"
+        );
         console.log(response.data);
         setCategories(response.data);
       } catch (error) {
@@ -56,10 +59,14 @@ const Jobs = () => {
           );
 
       if (response.status === (currentJob ? 200 : 201)) {
-        setMessage(currentJob ? "Job updated successfully!" : "Job created successfully!");
+        setMessage(
+          currentJob ? "Job updated successfully!" : "Job created successfully!"
+        );
         setJobs((prevJobs) =>
           currentJob
-            ? prevJobs.map((job) => (job.id === currentJob.id ? { ...job, ...response.data } : job))
+            ? prevJobs.map((job) =>
+                job.id === currentJob.id ? { ...job, ...response.data } : job
+              )
             : [...prevJobs, response.data]
         );
         setCurrentJob(null);
@@ -75,8 +82,17 @@ const Jobs = () => {
   };
 
   const handleDelete = async (jobId) => {
-    const isConfirmed = window.confirm("Are you sure you want to delete this job?");
-    if (!isConfirmed) return;
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (!result.isConfirmed) return;
 
     try {
       const token = localStorage.getItem("access");
@@ -84,15 +100,16 @@ const Jobs = () => {
         `https://job-dorkar.vercel.app/api/jobs/delete/${jobId}/`,
         { headers: { Authorization: `JWT ${token}` } }
       );
+
       if (response.status === 204) {
         setJobs(jobs.filter((job) => job.id !== jobId));
-        setMessage("Job deleted successfully!");
+        Swal.fire("Deleted!", "Job has been deleted.", "success");
       } else {
-        setMessage("Failed to delete job.");
+        Swal.fire("Failed!", "Job could not be deleted.", "error");
       }
     } catch (error) {
       console.error("Error deleting job:", error);
-      setMessage("Error deleting job.");
+      Swal.fire("Error!", "Something went wrong.", "error");
     }
   };
 

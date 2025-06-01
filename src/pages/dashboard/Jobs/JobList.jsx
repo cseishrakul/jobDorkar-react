@@ -15,7 +15,7 @@ const JobList = ({ jobs, onUpdate, onDelete, darkMode }) => {
         darkMode
           ? "bg-gray-800 border-gray-700 text-white"
           : "bg-white border-gray-200 text-black"
-      } shadow-md rounded-lg p-6`}
+      } shadow-md rounded-lg py-6 w-[100%]`}
     >
       <h2 className="text-2xl font-bold mb-6 text-center">Job List</h2>
       <div className="block overflow-hidden">
@@ -41,7 +41,7 @@ const JobList = ({ jobs, onUpdate, onDelete, darkMode }) => {
                 {jobs.map((job, index) => (
                   <tr
                     key={job.id}
-                    className="border-b hover:bg-gray-100 dark:hover:bg-gray-700"
+                    className="border-b hover:bg-gray-100 hover:cursor-pointer"
                   >
                     <td className="py-3 px-6">{index + 1}</td>
                     <td className="py-3 px-6">{job.title}</td>
@@ -50,7 +50,7 @@ const JobList = ({ jobs, onUpdate, onDelete, darkMode }) => {
                     <td className="py-3 px-6">
                       {job.category_name || "Unknown"}
                     </td>
-                    <td className="py-3 px-6 flex space-x-2">
+                    <td className="py-3 px-4 flex space-x-2">
                       <button
                         onClick={() => onUpdate(job)}
                         className="bg-blue-500 text-white py-1 px-3 rounded-md hover:bg-blue-600 cursor-pointer transition-all duration-300"

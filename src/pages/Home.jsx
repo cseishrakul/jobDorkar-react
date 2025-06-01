@@ -14,6 +14,8 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -24,12 +26,14 @@ const Home = () => {
         const sortedJobs = data.sort((a, b) => {
           return b.is_promoted - a.is_promoted;
         });
-        
-        console.log("promoted",data.map(job => job.is_promoted));
+
+        console.log(
+          "promoted",
+          data.map((job) => job.is_promoted)
+        );
         console.log("Sample job:", data[0]);
         return sortedJobs;
       });
-      
 
     // Fetch categories
     const fetchCategories = fetch(
@@ -54,8 +58,15 @@ const Home = () => {
   };
 
   const handleChange = (event) => {
-    console.log(event.target.value);
-    setSelectedCategory(event.target.value);
+    const { name, value } = event.target;
+
+    if (name === "category") {
+      setSelectedCategory(value);
+    } else if (name === "postingDate") {
+      setSelectedDate(value);
+    } else if (name === "location") {
+      setSelectedLocation(value);
+    }
     setCurrentPage(1);
   };
 
@@ -78,19 +89,36 @@ const Home = () => {
   };
   const allFilteredJobs = useMemo(() => {
     let filtered = jobs;
+
     if (query) {
       filtered = filtered.filter((job) =>
         job.jobTitle?.toLowerCase().includes(query.toLowerCase())
       );
     }
+
     if (selectedCategory) {
+      if (selectedCategory !== "") {
+        filtered = filtered.filter(
+          (job) => job?.category_name === selectedCategory
+        );
+      }
+    }
+
+    if (selectedDate && selectedDate !== "") {
       filtered = filtered.filter((job) => {
-        return job.category === selectedCategory;
+        const jobDate = new Date(job.date_posted).toISOString().slice(0, 10);
+        return jobDate >= selectedDate;
       });
     }
 
+    if (selectedLocation) {
+      filtered = filtered.filter((job) =>
+        job.location?.toLowerCase().includes(selectedLocation.toLowerCase())
+      );
+    }
+
     return filtered;
-  }, [jobs, query, selectedCategory]);
+  }, [jobs, query, selectedCategory, selectedDate, selectedLocation]);
 
   const { startIndex, endIndex } = calculatePageRange();
   const paginatedJobs = allFilteredJobs.slice(startIndex, endIndex);
@@ -99,12 +127,16 @@ const Home = () => {
     return paginatedJobs.map((data, i) => <Card key={i} data={data} />);
   }, [paginatedJobs]);
 
+  const uniqueLocations = useMemo(() => {
+    return [...new Set(jobs.map((job) => job.location))];
+  }, [jobs]);
+
   return (
     <div>
       <Banner query={query} handleInputChange={handleInputChange} />
       <div className="bg-[#FAFAFA] md:grid grid-cols-4 gap-8 lg:px-24 px-4 py-12">
         <div className="bg-white p-4 rounded">
-          <SideBar handleChange={handleChange} />
+          <SideBar handleChange={handleChange} locations={uniqueLocations}  />
         </div>
         <div className="bg-white p-4 rounded-sm col-span-2">
           <div className="bg-white p-4 rounded-sm col-span-2 min-h-[300px]">

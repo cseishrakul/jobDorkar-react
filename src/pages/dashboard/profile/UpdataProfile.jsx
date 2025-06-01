@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ProfileUpdate = ({ darkMode }) => {
   const [loading, setLoading] = useState(false);
@@ -59,8 +60,7 @@ const ProfileUpdate = ({ darkMode }) => {
         }
       );
 
-      console.log("Profile updated successfully!", response.data);
-      alert("Profile updated successfully!");
+      Swal.fire('Updated!', 'Profile updated successfully!', 'success');
     } catch (error) {
       console.error(
         "Failed to update profile:",
@@ -141,7 +141,7 @@ const ProfileUpdate = ({ darkMode }) => {
         <button
           type="submit"
           disabled={loading}
-          className={`flex items-center justify-center bg-blue-600 text-white py-3 rounded-md transition duration-300 
+          className={`flex items-center justify-center cursor-pointer bg-blue-600 text-white py-3 rounded-md transition duration-300 
     ${loading ? "opacity-70 cursor-not-allowed" : "hover:bg-blue-700"}`}
         >
           {loading ? (

@@ -4,6 +4,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 import { FaXmark } from "react-icons/fa6";
 import { IoIosArrowDropdown } from "react-icons/io";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { userData, setUserData } = useContext(UserContext);
@@ -14,13 +15,33 @@ const Navbar = () => {
 
   const handleMenuToggler = () => setIsMenuOpen(!isMenuOpen);
 
-  const handleLogout = () => {
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    localStorage.removeItem("userData");
-    setUserData(null);
-    navigate("/");
-  };
+   const handleLogout = () => {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Do you really want to log out?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, log out",
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem("access");
+          localStorage.removeItem("refresh");
+          localStorage.removeItem("userData");
+          setUserData(null);
+          Swal.fire(
+            "Logged Out!",
+            "You have been successfully logged out.",
+            "success"
+          ).then(() => {
+            navigate("/");
+            window.location.reload();
+          });
+        }
+      });
+    };
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
