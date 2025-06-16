@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FiCalendar, FiClipboard, FiMapPin } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import JobApplyModal from "./JobApplyModal";
+import Swal from "sweetalert2";
 
 const Card = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,20 +29,27 @@ const Card = ({ data }) => {
     const userDataString = localStorage.getItem("userData");
     const userData = userDataString ? JSON.parse(userDataString) : null;
     const userRole = userData?.role;
-  
+
     if (!token) {
-      alert("Please log in to apply.");
+      Swal.fire({
+        icon: "warning",
+        title: "Login Required",
+        text: "Please log in to apply.",
+      });
       return;
     }
-  
+
     if (userRole !== "job_seeker") {
-      alert("Only job seekers can apply for jobs.");
+      Swal.fire({
+        icon: "error",
+        title: "Access Denied",
+        text: "Only job seekers can apply for jobs.",
+      });
       return;
     }
-  
+
     setIsModalOpen(true);
   };
-  
 
   return (
     <>

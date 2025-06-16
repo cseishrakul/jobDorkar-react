@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const JobApplyModal = ({ job, onClose }) => {
   const [resume, setResume] = useState(null);
@@ -7,7 +8,14 @@ const JobApplyModal = ({ job, onClose }) => {
   const [loading, setLoading] = useState(false);
 
   const handleApply = async () => {
-    if (!resume) return alert("Please upload your resume.");
+    if (!resume) {
+      Swal.fire({
+        icon: "warning",
+        title: "Resume Required",
+        text: "Please upload your resume.",
+      });
+      return;
+    }
 
     setLoading(true);
 
@@ -29,11 +37,20 @@ const JobApplyModal = ({ job, onClose }) => {
         }
       );
 
-      alert("Application submitted!");
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Application submitted successfully!",
+      });
+
       onClose();
     } catch (err) {
       console.error(err);
-      alert("Failed to apply. Try again.");
+      Swal.fire({
+        icon: "error",
+        title: "Submission Failed",
+        text: "Failed to apply. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
