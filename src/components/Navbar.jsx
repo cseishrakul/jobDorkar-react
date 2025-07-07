@@ -53,17 +53,17 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { path: "/", title: "Start a search" },
-    { path: "/my-job", title: "My Jobs" },
-    { path: "/salary", title: "Salary Estimate" },
-    { path: "/post-job", title: "Post A Job" },
+    { path: "/", title: "Home" },
+    { path: "/job-apply", title: "Jobs" },
+    { path: "/about", title: "About" },
+    { path: "/blog", title: "Blog" },
   ];
 
   return (
-    <header className="max-w-screen-2xl container mx-auto xl:px-24 px-4">
+    <header className="max-w-screen-2xl container mx-auto xl:px-24 px-4 shadow-sm">
       <nav className="flex justify-between items-center py-6">
         <a href="/" className="text-blue-700 text-4xl font-bold">
-          JobDorkar
+          <img src="fav.png" className="w-10 h-10" alt="" />
         </a>
 
         {/* Desktop Nav */}

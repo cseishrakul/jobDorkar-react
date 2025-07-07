@@ -4,6 +4,7 @@ import Header from "../../components/dashboard/Header";
 import Main from "../../ui/Main";
 import Content from "../../ui/content/Content";
 import { UserContext } from "../../context/UserContext";
+import Sidebar from "../../components/dashboard/sideBar/Sidebar";
 
 const AdminDashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -55,6 +56,7 @@ const AdminDashboard = () => {
         darkMode={darkMode}
         toogleSidebar={toogleSidebar}
       />
+      <Sidebar />
       <Main darkMode={darkMode}>
         <Content>
           <div className="p-6 space-y-10">

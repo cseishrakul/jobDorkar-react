@@ -10,3 +10,44 @@
 *{
   @apply transition-colors duration-200
 }
+
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  background-color: white;
+  padding: 4rem 1.5rem; /* match Tailwind py-16 px-6 */
+}
+
+.marquee {
+  display: flex;
+  gap: 4rem;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee div {
+  min-width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.marquee img {
+  max-height: 3rem; /* about max-h-12 in Tailwind */
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.marquee img:hover {
+  filter: grayscale(0%);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

@@ -13,6 +13,10 @@ import Applications from "../pages/dashboard/Applications";
 import Category from "../pages/dashboard/Jobs/Category";
 import Profile from "../pages/dashboard/profile/Profile";
 import Payment from "../pages/dashboard/Payment";
+import JobPage from "../pages/JobPage";
+import JobDetails from "../pages/JobDetails";
+import About from "../pages/About";
+import Blog from "../pages/BlogPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +27,28 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/job-apply",
+        element: <JobPage />,
+      },
+      
+      {
+        path: "/jobs/:id",
+        element: <JobDetails />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
+        path: "/jobs/:id",
+        element: <JobDetails />,
+      },
+      
       {
         path: "/activate/:uid/:token",
         element: <ActivateAccount />,
