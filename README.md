@@ -1,12 +1,53 @@
-# React + Vite
+# 💼 JobDorkar — React Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Home page]()
 
-Currently, two official plugins are available:
+## 📄 Description  
+**JobDorkar** is a full-stack job portal application designed for self-employment opportunities. This repository contains the **frontend**, developed using **React, Vite, and Tailwind CSS**. During registration, users can choose their role as either an **employer** or a **job seeker**. Employers can post jobs and manage applicants, while job seekers can browse and apply to jobs. The backend, built with Django and PostgreSQL, is hosted in a separate repository.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features  
+- Self-employment-focused job portal  
+- Role-based registration: Employer or Job Seeker  
+- Employers can:
+  - Post job listings  
+  - View applicants’ data and resumes  
+- Job Seekers can:
+  - Browse and search for jobs  
+  - Apply with resume and details  
+- User authentication and profile management  
+- Separate dashboards for job seekers and employers  
+- Responsive and modern UI using Tailwind CSS  
+- Frontend communicates with backend Django REST API for real-time data  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+---
+
+## 🛠️ Technologies Used  
+- **Frontend Framework:** React (with Vite)  
+- **Styling:** Tailwind CSS  
+- **Routing:** React Router DOM  
+- **API Handling:** Axios  
+- **Icons:** React Icons  
+- **Backend API:** Django (DRF) — [Separate Repo](https://github.com/cseishrakul/jobDorkar)  
+- **Database (via backend):** PostgreSQL  
+
+---
+
+## 🧑‍💻 Local Setup Instructions
+
+To run this frontend project locally, follow these steps:
+
+# 1. Clone the repository
+git clone https://github.com/cseishrakul/jobDorkar-react.git
+cd jobDorkar-react
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the development server
+npm run dev
+
+# 4. Open in browser
+# Visit: http://localhost:5173
