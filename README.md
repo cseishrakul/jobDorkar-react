@@ -1,6 +1,6 @@
 # 💼 JobDorkar — React Frontend
 
-[Home page](home.page)
+[Home page](home.png)
 
 ## 📄 Description  
 **JobDorkar** is a full-stack job portal application designed for self-employment opportunities. This repository contains the **frontend**, developed using **React, Vite, and Tailwind CSS**. During registration, users can choose their role as either an **employer** or a **job seeker**. Employers can post jobs and manage applicants, while job seekers can browse and apply to jobs. The backend, built with Django and PostgreSQL, is hosted in a separate repository.
